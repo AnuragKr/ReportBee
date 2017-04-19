@@ -5,14 +5,20 @@ package com.example.android.reportbee;
  */
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<ListStudent> listStudents;
     private Context context;
+    private String spinnerItem;
 
     public MyAdapter(List<ListStudent> listStudents, Context context){
         this.listStudents = listStudents;
@@ -36,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final ListStudent listStudent = listStudents.get(position);
         holder.textViewRollNumber.setText(listStudent.getRollNo());
         holder.textViewStudentName.setText(listStudent.getStudentName());
@@ -44,6 +51,56 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, listStudent.getRollNo(), Toast.LENGTH_LONG).show();
+            }
+        });
+        //Spinner Drop Down Element
+        List<String> categories = new ArrayList<String>();
+        categories.add("Present");
+        categories.add("Absent");
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, categories) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return true;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setBackgroundColor(Color.GREEN);
+
+                } else {
+                    tv.setBackgroundColor(Color.RED);
+                }
+                (tv).setGravity(Gravity.CENTER);
+                return view;
+            }
+        };
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        holder.spinner.setAdapter(adapter);
+        //After Selecting Spinner Item
+        holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spinnerItem = (String) parent.getItemAtPosition(position);
+                if(spinnerItem.equals("Absent")){
+                holder.spinner.setBackgroundColor(Color.RED);}
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
@@ -58,11 +115,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView textViewRollNumber;
         public TextView textViewStudentName;
         public LinearLayout linearLayout;
+        public  Spinner spinner;
         public ViewHolder(View itemView){
             super(itemView);
             textViewRollNumber = (TextView) itemView.findViewById(R.id.textViewRollNumber);
             textViewStudentName = (TextView) itemView.findViewById(R.id.textViewStudentName);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
+            spinner = (Spinner) itemView.findViewById(R.id.markAttendance);
+
         }
     }
 
