@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.android.reportbee.MainActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/colorPrimaryDark"
         android:minHeight="?attr/actionBarSize"
-        android:titleTextColor="@color/black"
-        />
+        android:titleTextColor="@color/black" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -13,12 +13,11 @@
         android:layout_height="60dp"
         android:background="@color/colorPrimaryDark"
         android:minHeight="?attr/actionBarSize"
-        android:titleTextColor="@color/black"
-        />
+        android:titleTextColor="@color/black" />
+
     <DatePicker
         android:id="@+id/simpleDatePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:datePickerMode="calendar"
-        />
+        android:datePickerMode="calendar" />
 </LinearLayout>

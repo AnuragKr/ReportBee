@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //Checking if Recycler View hit the bottom then load save button otherwise load data normally
         if (viewType == 1) {
             return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.footer, parent, false));
 
@@ -51,7 +51,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final ListStudent listStudent = listStudents.get(position);
-       // Log.d("Footer",""+position+listStudents.size());
         if (++position == getItemCount()) {
             holder.saveButton.setText("Save");
             try{holder.saveButton.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +85,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, categories) {
                 @Override
                 public boolean isEnabled(int position) {
+                    //Controlling the dropdown from here
                     if (position == 0) {
-                        // Disable the first item from Spinner
                         // First item will be use for hint
                         return true;
                     } else {
@@ -107,7 +106,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     } else {
                         tv.setBackgroundColor(Color.RED);
                     }
-                    (tv).setGravity(Gravity.CENTER);
                     return view;
                 }
             };

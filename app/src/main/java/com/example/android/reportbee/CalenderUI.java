@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,7 +41,6 @@ public class CalenderUI extends AppCompatActivity {
             e.printStackTrace();
         }
         DatePicker datePickerDialog = (DatePicker) findViewById(R.id.simpleDatePicker); // initiate a date picker
-        //      datePickerDialog.setMinDate(System.currentTimeMillis() - 1000);
         final Calendar c = Calendar.getInstance();
         c.add(Calendar.DATE, -60); // subtract 60 days from now
         try {
@@ -56,7 +54,7 @@ public class CalenderUI extends AppCompatActivity {
         } catch (Throwable e) {
             e.printStackTrace();
         }//Set Max Date to Current Date
-        datePickerDialog.init( datePickerDialog.getYear(), datePickerDialog.getMonth(),
+        datePickerDialog.init(datePickerDialog.getYear(), datePickerDialog.getMonth(),
                 datePickerDialog.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
 
                     @Override
@@ -71,12 +69,12 @@ public class CalenderUI extends AppCompatActivity {
                         } else {
                             selectedDate = String.valueOf(date) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year);
                         }
-                        Log.v("Date", selectedDate);
                         Intent intent = new Intent(CalenderUI.this, MarkAttendence.class);
                         startActivity(intent);
                     }
                 });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -91,6 +89,7 @@ public class CalenderUI extends AppCompatActivity {
             case R.id.logout:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

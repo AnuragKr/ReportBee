@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,14 +13,13 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin;
     private EditText inputEmail;
     private EditText inputPassword;
-    // Session Manager Class
-    //SessionManagement session;
     AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Initialization
         btnLogin = (Button) findViewById(R.id.btnLogin);
         builder = new AlertDialog.Builder(MainActivity.this);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
-                Log.v("Details",email + password);
+                //Validating email and password
                 if (password.equals("") && email.equals("")) {
                     builder.setTitle("Something Went Wrong....");
                     displayAlert("Enter Valid Username And Password....");
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    //Function for showing alert message
     public void displayAlert(final String message) {
         builder.setMessage(message);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
