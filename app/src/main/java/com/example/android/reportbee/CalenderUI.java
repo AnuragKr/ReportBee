@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
@@ -28,15 +27,7 @@ public class CalenderUI extends AppCompatActivity {
         try {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            toolbar.setNavigationIcon(R.drawable.arrow_left);
-            getSupportActionBar().setTitle("Calender");
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                }
-            });
+            getSupportActionBar().setTitle("Home");
         } catch (Throwable e) {
             e.printStackTrace();
         }
