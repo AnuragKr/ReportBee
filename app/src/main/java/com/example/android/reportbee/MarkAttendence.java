@@ -1,10 +1,13 @@
 package com.example.android.reportbee;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +31,22 @@ public class MarkAttendence extends AppCompatActivity {
             recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            //Toolbar
+            try {
+                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                setSupportActionBar(toolbar);
+                toolbar.setNavigationIcon(R.drawable.arrow_left);
+                getSupportActionBar().setTitle("Attendance");
+                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), CalenderUI.class);
+                        startActivity(intent);
+                    }
+                });
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
             listStudents = new ArrayList<>();
             Log.v("Data",getJsonArray().toString());
             loadRecycleViewData(getJsonArray());
@@ -41,7 +60,7 @@ public class MarkAttendence extends AppCompatActivity {
         list.add("Pete Cashmore");list.add("Sheryl Sandberg");list.add("Tim Cook");
         list.add("Andy Rubin");list.add("Jack Dorsey");list.add("Larry Page");
         list.add("Michael Dell");list.add("Alfred Lin");list.add("Marissa Mayer");list.add("Jeff Weiner");
-        list.add("Paul Otellini");list.add("Bill Gates");list.add("Jack Ma");list.add("Jeff Bezos");
+        list.add("Paul Otellini");list.add("Bill Gates");list.add("Jack Ma");list.add("Jeff Bezos");list.add("Jeff Bezos");
         JSONObject responseDetailsJson = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         try {

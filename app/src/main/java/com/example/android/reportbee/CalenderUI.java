@@ -7,7 +7,12 @@ package com.example.android.reportbee;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
@@ -20,6 +25,22 @@ public class CalenderUI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calender);
+        //Toolbar
+        try {
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            toolbar.setNavigationIcon(R.drawable.arrow_left);
+            getSupportActionBar().setTitle("Calender");
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
         DatePicker datePickerDialog = (DatePicker) findViewById(R.id.simpleDatePicker); // initiate a date picker
         //      datePickerDialog.setMinDate(System.currentTimeMillis() - 1000);
         final Calendar c = Calendar.getInstance();
@@ -35,7 +56,7 @@ public class CalenderUI extends AppCompatActivity {
         } catch (Throwable e) {
             e.printStackTrace();
         }//Set Max Date to Current Date
-        datePickerDialog.init(datePickerDialog.getYear(), datePickerDialog.getMonth(),
+        datePickerDialog.init( datePickerDialog.getYear(), datePickerDialog.getMonth(),
                 datePickerDialog.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
 
                     @Override
@@ -55,5 +76,24 @@ public class CalenderUI extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.logout:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

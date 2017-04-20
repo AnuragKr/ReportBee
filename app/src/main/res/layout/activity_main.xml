@@ -6,6 +6,14 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp" >
+       <ImageView
+           android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:src="@drawable/report_bee"
+           android:padding="10dp"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="-30dp"
+           />
 
         <EditText
             android:id="@+id/email"
@@ -17,7 +25,9 @@
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textColor="@color/input_login"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/black"
+            android:backgroundTint="@color/black"/>
+
 
         <EditText
             android:id="@+id/password"
@@ -29,7 +39,9 @@
             android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="@color/input_login"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/black"
+            android:backgroundTint="@color/black"/>/>
+
 
         <!-- Login Button -->
 
@@ -38,17 +50,20 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@color/btn_login_bg"
+            android:background="@color/colorPrimaryDark"
             android:text="@string/btn_login"
-            android:textColor="@color/btn_login" />
+            android:textSize="20dp"
+            android:textColor="@color/white" />
 
         <!-- Terms And Conditions-->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/terms_and_condition"
-            android:layout_marginTop="40dp"
+            android:text="@string/terms"
             android:gravity="center"
+            android:id="@+id/terms"
+            android:layout_marginTop="40dp"
             />
+
     </LinearLayout>
