@@ -26,7 +26,8 @@
             android:padding="10dp"
             android:textColor="@color/input_login"
             android:textColorHint="@color/black"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/black"
+            android:textCursorDrawable="@null"/>
 
 
         <EditText
@@ -40,7 +41,8 @@
             android:padding="10dp"
             android:textColor="@color/input_login"
             android:textColorHint="@color/black"
-            android:backgroundTint="@color/black"/>/>
+            android:backgroundTint="@color/black"
+            android:textCursorDrawable="@null"/>
 
 
         <!-- Login Button -->
